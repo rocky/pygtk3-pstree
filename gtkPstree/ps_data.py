@@ -8,8 +8,7 @@ data = [
         3: ProcessTreeNode('perl',   'R', 3, 0, 1000, 0, [], []),
         4: ProcessTreeNode('bash',   'T', 4, 0, 1000, 0, [], []),
         },
-    'levels': [ [1, 2, 3, 4],
-              ]
+    'levels': [ [1, 2, 3, 4], ]
      },
     {'pid2node': {
         3009: ProcessTreeNode('gnome-keyring-dddd', 'R', 3009, 1931, 1000, 0, [], []),
@@ -24,8 +23,7 @@ data = [
     'levels': [ [3009, 3011],
                [3098, 3108, 3112],
                [3117, 3218],
-               [3995],
-               ]
+               [3995], ]
      },
     {'pid2node': {
         1: ProcessTreeNode('bash',   'R', 1, 0, 1000, 0, [], []),
@@ -37,10 +35,7 @@ data = [
         7: ProcessTreeNode('glade',  'R', 7, 5, 1000, 2, [], []),
         8: ProcessTreeNode('python', 'R', 8, 5, 1000, 2, [], []),
         },
-     'levels': [ [1, 2, 3,4],
-               [5, 6],
-               [7, 8]
-               ],
+     'levels': [ [1, 2, 3, 4], [5, 6], [7, 8] ],
      },
     {'pid2node': {
         1: ProcessTreeNode('bash',   'R', 1, 0, 1000, 0, [], []),
@@ -65,8 +60,8 @@ data = [
         05: ProcessTreeNode('indicator-keybo', 'S', 05, 0, 1000, 0, [], []),
         06: ProcessTreeNode('dconf-service',   'S', 06, 0, 1000, 0, [], []),
         07: ProcessTreeNode('glade',           'S', 07, 2, 1000, 1, [], []),
-         8: ProcessTreeNode('pokeymon-au',     'S',  8, 3, 1000, 1, [], []),
-         9: ProcessTreeNode('nm-applet',       'S',  9, 3, 1000, 1, [], []),
+        18: ProcessTreeNode('pokeymon-au',     'S', 18, 3, 1000, 1, [], []),
+        19: ProcessTreeNode('nm-applet',       'S', 19, 3, 1000, 1, [], []),
         10: ProcessTreeNode('tracker-store',   'S', 10, 3, 1000, 1, [], []),
         11: ProcessTreeNode('tracker-miner-f', 'S', 11, 3, 1000, 1, [], []),
         12: ProcessTreeNode('tracker-miner-f', 'S', 12, 3, 1000, 1, [], []),
