@@ -50,6 +50,8 @@ class PSTreeWindow:
 
         self.window = self.builder.get_object("pstree top")
         self.status_bar = self.builder.get_object("statusBar")
+
+        self.exposed = True
         self.update_status()
         self.window.show_all()
         self.timer = TimerClass(self.update_status, delay_in_secs)

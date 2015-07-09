@@ -16,6 +16,11 @@ def get_psdata():
 
 def do_draw(self, cr, get_data_fn=None):
 
+    if not self.exposed:
+        if self.debug: print("Not exposed")
+        return
+    if self.debug: print("exposed")
+
     if get_data_fn is None:
         self.levels, self.pid2node = get_psdata()
     else:

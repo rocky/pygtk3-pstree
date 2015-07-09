@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk, Gdk, Pango
 
 # Our modules
 from dialog.about import AboutDialog
@@ -33,8 +33,12 @@ class Handler:
         except:
             pass
 
-    def onHideEvent(self, *args):
-        print("Hide called!", args)
+    def onWindowState(self, widget, event):
+        # print("{:016b}".format(event.new_window_state))
+        if event.new_window_state & Gdk.EventMask.EXPOSURE_MASK:
+            self.pstree.exposed = False
+        else:
+            self.pstree.exposed = True
 
     def onExitActivate(self, *args):
         self.pstree.timer.stop()
