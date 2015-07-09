@@ -6,6 +6,4 @@ In contrast to pstree and many tree-widget based programs, the overall tree disp
 
 One can click on a process to get more information (via ps) about that process.
 
-This is a port of the older C and Motif X program |xps|.
-
-.. |xps| target:: http://motif-pstree.sourceforge.net/
+This is a port of the older C and Motif X program `xps <http://motif-pstree.sourceforge.net>`_.
