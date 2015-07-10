@@ -5,20 +5,41 @@ from bisect import bisect_left
 # Stuff from this package
 from opsys.loadavg import ReadLoadAvg
 from ps_timer import TimerClass
-from ps_data import get_data
+from ps_data import get_data, data
 from ps_handler import Handler
 from main import bisect_pids
 from draw import do_draw
 
+do_all = True
+test_num = 0
 
-def get_data_fn():
-    n = 4
-    # try:
-    #     n = int(input("Enter data point number in 0..3: "))
-    # except:
-    #     self.handler.onExitActivate()
-    #     return
-    return get_data(n)
+def get_data_fn(self):
+    global do_all, test_num
+    if do_all:
+        print len(data)
+        msg = ("Enter data point number in 0..%d: " %
+               (len(data) - 1))
+        done = False
+        while not done:
+            try:
+                n = input(msg)
+                if n != '':
+                    try:
+                        test_num = int(n) % len(data)
+                        done = True
+                    except:
+                        pass
+                else:
+                    test_num = (test_num + 1) % len(data)
+                    done = True
+            except:
+                self.handler.onExitActivate()
+                done=True
+                pass
+            pass
+        pass
+
+    return get_data(test_num)
 
 
 class PSTestWindow:
@@ -98,4 +119,12 @@ class PSTestWindow:
 
 
 pstree = PSTestWindow(30, debug=True)
+import sys
+if len(sys.argv) > 1:
+    try:
+        test_num = int(sys.argv[1])
+        print(test_num)
+        do_all = False
+    except:
+        pass
 Gtk.main()

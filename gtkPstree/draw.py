@@ -1,30 +1,16 @@
 """Things related to drawing the process tree"""
 from gi.repository import Pango, PangoCairo
-from ps_tree import PsTree
-from opsys.process_pids import ListPID
 from arrange import arrange
 
 
-def get_psdata():
-    user = 1000
-    # user = None
-    pids = ListPID("/proc", user)
-    pstree = PsTree()
-    ipids = pstree.GatherPidInfo(pids)
-    return pstree.buildChildren(ipids)
-
-
-def do_draw(self, cr, get_data_fn=None):
+def do_draw(self, cr, get_data_fn):
 
     if not self.exposed:
         if self.debug: print("Not exposed")
         return
     if self.debug: print("exposed")
 
-    if get_data_fn is None:
-        self.levels, self.pid2node = get_psdata()
-    else:
-        self.levels, self.pid2node = get_data_fn()
+    self.levels, self.pid2node = get_data_fn(self)
 
     max_x, max_y, self.levels_x = arrange(self.levels, self.pid2node,
                                           self.width, debug=self.debug)

@@ -8,6 +8,9 @@ from ps_timer import TimerClass
 from ps_handler import Handler
 from draw import do_draw
 
+from opsys.process_pids import ListPID
+from ps_tree import PsTree
+
 
 def bisect_pids(pids, pid2node, y):
     """Return the index where to y offset *y* is in pid list *pids*,
@@ -25,6 +28,13 @@ def bisect_pids(pids, pid2node, y):
     return lo
 
 
+def get_psdata(self):
+    pids = ListPID("/proc", self.user)
+    pstree = PsTree()
+    ipids = pstree.GatherPidInfo(pids)
+    return pstree.buildChildren(ipids)
+
+
 class PSTreeWindow:
 
     def __init__(self, delay_in_secs=1, bg='#DA7', font='Sans 10'):
@@ -34,6 +44,9 @@ class PSTreeWindow:
         self.builder = Gtk.Builder()
         self.builder.add_from_file("gnopstree.glade")
         self.builder.connect_signals(self.handler)
+
+        self.user = 1000
+        # self.user = None
 
         # Levels contains a list of list of pids.  The top-level list
         # are pids at a given depth, 0, being root-level pids within a
@@ -79,7 +92,7 @@ class PSTreeWindow:
         self.line_gap = 4
 
     def draw_cb(self, widget, cr):
-        do_draw(self, cr)
+        do_draw(self, cr, get_psdata)
 
     def locate_pid(self):
         level = bisect_left(self.levels_x, self.area.x) - 1
