@@ -5,7 +5,7 @@ import subprocess
 class PidDialog:
     """Dialog for showing PID information when a process is clicked on"""
 
-    DEFAULT_PS_CMD = ['ps', '-o', 'pcpu,wchan,pri,args', '-w', '-p']
+    DEFAULT_PS_CMD = ['ps', '-o', 'pcpu,time,tid,wchan,pri,args', '-w', '-p']
 
     def __init__(self, ps_cmd=DEFAULT_PS_CMD):
         # ps comamnds and args without the final pid
